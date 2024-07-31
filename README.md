@@ -119,13 +119,11 @@ Hide/Show table of contents
 |
 </details>
 
-## Core React
-
 1.  ### What is React?
 
-    React (aka React.js or ReactJS) is an **open-source front-end JavaScript library** that is used for building composable user interfaces, especially for single-page applications. It is used for handling view layer for web and mobile apps based on components in a declarative approach.
+    React (React.js or ReactJS) is an **open-source front-end JavaScript library** that is used for building composable user interfaces, especially for single-page applications. It was developed by Facebook and released to the public in 2013.
 
-    React was created by [Jordan Walke](https://github.com/jordwalke), a software engineer working for Facebook. React was first deployed on Facebook's News Feed in 2011 and on Instagram in 2012.
+    React is based on the concept of components, which are reusable and self-contained pieces of code that represent different parts of a user interface. These components can be composed together to build complex UIs. React was first deployed on Facebook's News Feed in 2011 and on Instagram in 2012.
 
     **[⬆ Back to Top](#table-of-contents)**
 
@@ -161,7 +159,9 @@ Hide/Show table of contents
 
     ```jsx harmony
     export default function App() {
-      return <h1 className="greeting">{"Hello, this is a JSX Code!"}</h1>;
+      return (
+    <h1 className="greeting">{"Hello, this is a JSX Code!"}</h1>;
+    )
     }
     ```
 
@@ -170,13 +170,6 @@ Hide/Show table of contents
     ```javascript
     import { createElement } from "react";
 
-    export default function App() {
-      return createElement(
-        "h1",
-        { className: "greeting" },
-        "Hello, this is a JSX Code!"
-      );
-    }
     ```
 
      <details><summary><b>See Class</b></summary>
@@ -193,7 +186,6 @@ Hide/Show table of contents
      </p>
      </details>
 
-    **Note:** JSX is stricter than HTML
 
     **[⬆ Back to Top](#table-of-contents)**
 
@@ -204,13 +196,13 @@ Hide/Show table of contents
     The JavaScript representation(Without JSX) of React Element would be as follows:
 
     ```javascript
-    const element = React.createElement("div", { id: "login-btn" }, "Login");
+    const element = React.createElement("div", { id: "welcome" }, "Hello, world!");
     ```
 
     and this element can be simiplified using JSX
 
     ```html
-    <div id="login-btn">Login</div>
+    <div id="welcome">Hello, world!</div>
     ```
 
     The above `React.createElement()` function returns an object as below:
@@ -219,33 +211,33 @@ Hide/Show table of contents
     {
       type: 'div',
       props: {
-        children: 'Login',
-        id: 'login-btn'
+        children: 'Hello, world!',
+        id: 'welcome'
       }
     }
     ```
 
     Finally, this element renders to the DOM using `ReactDOM.render()`.
 
-    Whereas a **component** can be declared in several different ways. It can be a class with a `render()` method or it can be defined as a function. In either case, it takes props as an input, and returns a JSX tree as the output:
+    Whereas a **component** can be declared in several different ways. It can be a class with a `render()` method or it can be defined as a function. In either case, it takes props as an input, and returns a JSX tree as the output describing what should appear on the screen:
 
     ```javascript
-    const Button = ({ handleLogin }) => (
-      <div id={"login-btn"} onClick={handleLogin}>
+    function MyComponent({showWelcomeMsg}) {
+      <div id={"welcome"} onClick={showWelcomeMsg}>
         Login
       </div>
-    );
+    }
     ```
 
     Then JSX gets transpiled to a `React.createElement()` function tree:
 
     ```javascript
-    const Button = ({ handleLogin }) =>
+    function MyComponent({showWelcomeMsg}){
       React.createElement(
         "div",
-        { id: "login-btn", onClick: handleLogin },
-        "Login"
-      );
+        { id: "welcome", onClick: showWelcomeMsg },
+        "Hello, World!"
+      };
     ```
 
     **[⬆ Back to Top](#table-of-contents)**
